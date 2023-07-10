@@ -1,14 +1,18 @@
-import NavBar from "../../layout/navbar/NavBar"
+// import NavBar from "../../layout/navbar/NavBar"
 import ItemList from "../itemList/ItemList"
 import Footer from "../../layout/footer/Footer"
+import ItemDetail from "./itemDetail/ItemDetail"
 
-const Home = () => {
+const Home = ({edad}) => {
+  console.log("el componente se monto!")
 
 
   return (
     <>
-      <NavBar />
+      {/* <NavBar /> */}
       <ItemList nombre='JS'/>
+      <h2>La edad es{edad}</h2>
+      <ItemDetail/>
       <Footer />
 
     </>
