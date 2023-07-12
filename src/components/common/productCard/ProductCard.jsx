@@ -1,8 +1,40 @@
-import React from 'react'
+import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Typography } from "@mui/material"
+import { Link } from "react-router-dom"
 
-const ProductCard = ({elemento, isInItemList=true}) => {
+const ProductCard = ({ item,isInItemList }) => {
   return (
-    <div>ProductCard</div>
+    <Card sx={{ Width: 345 }}>
+      <CardActionArea>
+        <CardMedia
+          component="img"
+          height="140"
+          image={item.img}
+          alt="green iguana"
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            {item.title}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            {item.description}
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+      <CardActions>
+        {
+          isInItemList ? (
+            <Button size="small" color="primary" >
+              <Link to={`/itemdetail/${item.id}`}>Ver detalle</Link>
+            </Button>
+          ) : (
+            <Button size="small" color="primary">
+              Eliminar del Carrito
+            </Button>
+          )
+
+        }
+      </CardActions>
+    </Card >
   )
 }
 

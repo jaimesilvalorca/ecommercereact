@@ -1,24 +1,25 @@
-import { useState, useEffect } from "react"
-import CounterContainer from "../../common/counter/CounterContainer"
-
-const ItemList = ({ nombre }) => {
-
-  const [items, setItems] = useState([])
+import ProductCard from "../../common/productCard/ProductCard"
 
 
-  useEffect(()=>{
-    //ACA VA TODO CODIGO QUE NO QUIERO QUE SE LEA NUEVAMENTE
-    console.log('El componente se montó')
+const ItemList = ({ items }) => {
+  console.log("llego al presentacional:", items)
 
-  },[items])
 
   return (
     <div>
-      <h1>Bienvenido a 
-        la tienda de {nombre}</h1>
-      <button onClick={()=>setItems([...items,{}])}>Traer productos</button>
-      <CounterContainer stock={7}/>
+      <h1 style={{textAlign:'center',paddingTop:'10px',paddingBottom:'10px'}}>
+        Todos los productos
+      </h1>
+      <div style={{width: "100%",display:"flex",justifyContent:"space-evenly",flexWrap:"wrap"}}>
+        {items.map((item) => {
+          return (
+            <ProductCard key={item.id} item={item} isInItemList={true}/>
+          )
+        })}
+      </div>
     </div>
+
+
   )
 }
 

@@ -17,7 +17,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route element={<Layout />}>
-          <Route path="/" element={<ItemList />} />
+          <Route path="/" element={<ItemListContainer />} />
           <Route path="/category/:categoryName" element={<ItemListContainer/>} />
           <Route path="/itemDetail/:id" element={<ItemDetail/>} />
           <Route path="/login" element={<h1>este es el loggin</h1>} />

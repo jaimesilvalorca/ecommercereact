@@ -12,13 +12,13 @@ const Navbar = () => {
                         </Link>
                     </Typography>
                     <Button color='inherit'>
-                        Inicio
+                    <Link to='/'>Todas</Link>
                     </Button>
                     <Button color='inherit'>
-                        Productos
+                    <Link to='/category/deportivas'>Deportivas</Link>
                     </Button>
                     <Button color='inherit'>
-                        Contacto
+                        <Link to='/category/urbanas'>Urbanas </Link>
                     </Button>
                     <Badge>
                         <CartWidget />

@@ -5,20 +5,23 @@ import { useParams } from "react-router-dom"
 
 
 export const ItemListContainer = () => {
-const [items,setItems] = useState([])
-const [error,setError] = useState({})
+  const [items, setItems] = useState([])
+  // eslint-disable-next-line no-unused-vars
+  const [error, setError] = useState({})
 
-const {categoryName} = useParams
+  const { categoryName } = useParams()
 
-useEffect(()=>{
+  useEffect(() => {
     let productosFiltrados = products.filter((elemento) => elemento.category === categoryName)
-    const tarea = new Promise((resolve,reject)=>{
-        resolve(categoryName === undefined ? products : productosFiltrados)
+    // eslint-disable-next-line no-unused-vars
+    const tarea = new Promise((res, rej) => {
+      res(categoryName === undefined ? products : productosFiltrados)
+
     })
     tarea
-    .then((respuesta)=>setItems(respuesta))
-    .catch((error)=>setError(error))
-},[categoryName])
+      .then((respuesta) => setItems(respuesta))
+      .catch((error) => setError(error))
+  }, [categoryName])
 
-  return <ItemList items = {items} />
+  return <ItemList items={items} />
 }
