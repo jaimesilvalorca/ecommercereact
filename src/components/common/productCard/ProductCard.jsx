@@ -24,7 +24,7 @@ const ProductCard = ({ item,isInItemList }) => {
         {
           isInItemList ? (
             <Button size="small" color="primary" >
-              <Link to={`/itemdetail/${item.id}`}>Ver detalle</Link>
+              <Link to={`/item/${item.id}`}>Ver detalle</Link>
             </Button>
           ) : (
             <Button size="small" color="primary">

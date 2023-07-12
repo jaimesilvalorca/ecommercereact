@@ -1,9 +1,8 @@
 
 // import { useState } from "react"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import ItemList from "./components/pages/itemList/ItemList"
 import Layout from "./components/layout/Layout"
-import ItemDetail from "./components/pages/home/itemDetail/ItemDetail"
+import ItemDetailContainer from "./components/pages/home/itemDetail/ItemDetailContainer"
 import { ItemListContainer } from "./components/pages/itemList/ItemListContainer"
 
 
@@ -19,7 +18,7 @@ function App() {
         <Route element={<Layout />}>
           <Route path="/" element={<ItemListContainer />} />
           <Route path="/category/:categoryName" element={<ItemListContainer/>} />
-          <Route path="/itemDetail/:id" element={<ItemDetail/>} />
+          <Route path="/item/:id" element={<ItemDetailContainer/>} />
           <Route path="/login" element={<h1>este es el loggin</h1>} />
           <Route path="/cart" />
         </Route>

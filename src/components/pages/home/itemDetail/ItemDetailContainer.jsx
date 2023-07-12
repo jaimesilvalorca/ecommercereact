@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom"
 import ProductCard from "../../../common/productCard/ProductCard"
 
 
-const ItemDetail = () => {
+const ItemDetailContainer = () => {
     const [producto, setProducto] = useState({})
 
     const { id } = useParams()
@@ -37,4 +37,4 @@ const ItemDetail = () => {
     )
 }
 
-export default ItemDetail
+export default ItemDetailContainer
