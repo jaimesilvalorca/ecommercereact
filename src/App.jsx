@@ -1,9 +1,7 @@
 
 // import { useState } from "react"
-import { BrowserRouter, Route, Routes } from "react-router-dom"
-import Layout from "./components/layout/Layout"
-import ItemDetailContainer from "./components/pages/home/itemDetail/ItemDetailContainer"
-import { ItemListContainer } from "./components/pages/itemList/ItemListContainer"
+import { BrowserRouter } from "react-router-dom"
+import AppRouter from "./routes/AppRouter"
 
 
 function App() {
@@ -14,16 +12,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Routes>
-        <Route element={<Layout />}>
-          <Route path="/" element={<ItemListContainer />} />
-          <Route path="/category/:categoryName" element={<ItemListContainer/>} />
-          <Route path="/item/:id" element={<ItemDetailContainer/>} />
-          <Route path="/login" element={<h1>este es el loggin</h1>} />
-          <Route path="/cart" />
-        </Route>
-        <Route path="*" element={<h1>404 not found</h1>} />
-      </Routes>
+      <AppRouter />
     </BrowserRouter>
 
 

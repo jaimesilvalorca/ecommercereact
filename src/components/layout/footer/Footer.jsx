@@ -7,7 +7,7 @@ const Footer = () => {
             <AppBar position="static">
                 <Toolbar>
                     <Typography style={{ textAlign:'center'}}>
-                        <p>Todos los derechos reservados Ecommerce Jaime Silva</p>
+                        Todos los derechos reservados Ecommerce Jaime Silva
 
                     </Typography>
                 </Toolbar>

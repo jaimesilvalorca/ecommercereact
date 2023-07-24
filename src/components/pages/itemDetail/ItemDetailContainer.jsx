@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react"
-// import CounterContainer from "../../../common/counter/CounterContainer"
-import products from "../../../../productsMock"
-import { useParams } from "react-router-dom"
-import ProductCard from "../../../common/productCard/ProductCard"
+import CounterContainer from "../../common/counter/CounterContainer"
+import products from "../../../productsMock"
+import { useParams, useNavigate } from "react-router-dom"
+import ProductCard from "../../common/productCard/ProductCard"
 
 
 const ItemDetailContainer = () => {
     const [producto, setProducto] = useState({})
 
-    const { id } = useParams()
+    const { id } = useParams() 
+    const navigate = useNavigate()
 
     useEffect(() => {
         let productoSeleccionado = products.find(elemento => elemento.id === +id)
@@ -19,10 +20,11 @@ const ItemDetailContainer = () => {
         tarea.then(res => setProducto(res))
     }, [id])
 
-    // const onAdd = (cantidad)=>{
-    //     console.log(producto)
-    //     console.log(cantidad)
-    // }
+     const onAdd = (cantidad)=>{
+         console.log(producto)
+         console.log(cantidad)
+         navigate('/cart')
+     }
 
     return (
         <div style={{textAlign:"center"}}>
@@ -30,7 +32,7 @@ const ItemDetailContainer = () => {
             <div style={{ width: "100%", display: "flex", justifyContent: "space-evenly", flexWrap: "wrap" }}>
 
                 <ProductCard item={producto} />
-                {/* <CounterContainer stock={producto.stock} onAdd={onAdd}/> */}
+                {<CounterContainer stock={producto.stock} onAdd={onAdd}/> }
 
             </div>
         </div>
