@@ -1,11 +1,15 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import CounterContainer from "../../common/counter/CounterContainer"
 import products from "../../../productsMock"
 import { useParams, useNavigate } from "react-router-dom"
 import ProductCard from "../../common/productCard/ProductCard"
+import { CartContext } from "../../../context/CartContext"
 
 
 const ItemDetailContainer = () => {
+
+    const {addToCart} = useContext(CartContext)
+
     const [producto, setProducto] = useState({})
 
     const { id } = useParams() 
@@ -21,9 +25,11 @@ const ItemDetailContainer = () => {
     }, [id])
 
      const onAdd = (cantidad)=>{
-         console.log(producto)
-         console.log(cantidad)
-         navigate('/cart')
+
+        let productCart = {...producto,quantity:cantidad}
+        addToCart(productCart)
+
+         
      }
 
     return (
