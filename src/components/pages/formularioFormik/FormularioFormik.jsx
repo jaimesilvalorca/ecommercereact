@@ -9,7 +9,9 @@ const FormularioFormik = () => {
         initialValues:{
             name:'',
             email:'',
-            password:''
+            password:'',
+            repeatPassword: '',
+
         },
         onSubmit: (data)=>{
             console.log(data)
@@ -17,7 +19,8 @@ const FormularioFormik = () => {
         validationSchema:Yup.object({
             name: Yup.string().required("Este campo es obligatorio").min(5,"este campo debe tener minimo 5 caracteres").max(10), //required, tiene que ser obligatorio
             email: Yup.string().email().required("Este campo es obligatorio"),
-            password:Yup.string().required("Este campo es obligatorio").min(6)
+            password:Yup.string().required("Este campo es obligatorio").min(6),
+            repeatPassword:Yup.string().required().oneOf([Yup.ref("password")],"Las contraseñas debe no coinciden") //el oneOF recibe un arreglo y un string
         }),
         validateOnChange:false, // para validar el el change
         validateOnBlur:true, //validar si entro o salgo de un input
@@ -29,6 +32,7 @@ const FormularioFormik = () => {
                 <TextField label="Name" variant="outlined" error={errors.name ? true : false} name="name" onChange={handleChange} helperText={errors.name}/>
                 <TextField label="Email" variant="outlined" error={errors.email ? true : false} name="email" onChange={handleChange} helperText={errors.email}/>
                 <TextField label="Pass" variant="outlined" error={errors.password ? true : false} name="password" onChange={handleChange} helperText={errors.password}/>
+                <TextField label="Pass" variant="outlined" error={errors.repeatPassword ? true : false} name="repeatPassword" onChange={handleChange} helperText={errors.repeatPassword}/>
                 <Button type="submit" variant="contained">Enviar</Button>
             </form>
         </div>
