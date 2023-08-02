@@ -2,12 +2,6 @@ import { createContext, useState } from "react"
 
 export const CartContext = createContext()
 
-
-//Mejor crear una variable que se llama data con todo lo que va heredar para darle ese data al value
-//El value es el que recibe un objeto con doble {{}}
-//CartContextProvider es el componente
-//CartConext.Provider es el createContext con la propiedad Provider para aceptar los children
-
 const CartContextProvider = ({ children }) => {
 
     const [cart, setCart] = useState([])
@@ -84,3 +78,31 @@ const CartContextProvider = ({ children }) => {
 }
 
 export default CartContextProvider
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Mejor crear una variable que se llama data con todo lo que va heredar para darle ese data al value
+//El value es el que recibe un objeto con doble {{}}
+//CartContextProvider es el componente
+//CartConext.Provider es el createContext con la propiedad Provider para aceptar los children
+
+

@@ -3,6 +3,8 @@ import CartWidget from "../../common/cartwidget/CartWidget"
 import { Link } from "react-router-dom"
 
 const Navbar = () => {
+    let userRol = 'admin'
+
     return (
         <div>
             <AppBar position="static">
@@ -16,6 +18,9 @@ const Navbar = () => {
                     </Button>
                     <Button color='inherit'>
                     <Link to='/category/deportivas'>Deportivas</Link>
+                    {
+                        userRol === 'admin' && <Link to='/dashboard'>Dashboard</Link>
+                    }
                     </Button>
                     <Button color='inherit'>
                         <Link to='/category/urbanas'>Urbanas </Link>

@@ -1,6 +1,7 @@
 import { useContext } from "react"
 import { CartContext } from "../../../context/CartContext"
 import Swal from "sweetalert2"
+import { Link } from "react-router-dom"
 
 //hay que indicarle que contexto va utilizar
 
@@ -49,6 +50,7 @@ const CartContainer = () => {
             <button onClick={limpiar}>Limpiar Carrrito</button>
           }
           <h5>El total es:{total}</h5>
+          <Link to={"/checkout"}>Finalizar Compra  </Link>
     </div>
   )
 }
