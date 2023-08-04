@@ -5,18 +5,18 @@ import { Link } from 'react-router-dom';
 import { CartContext } from '../../../context/CartContext';
 
 const CartWidget = () => {
+    const {getTotalQuantity } = useContext(CartContext);
+    let total = getTotalQuantity();
 
-    const {cart,getTotalQuantity} = useContext(CartContext)
-    let total = getTotalQuantity()
     return (
         <>
             <Badge badgeContent={total} showZero color="warning">
-                <ShoppingCart color="inherit" />
             </Badge>
-            <Link to='/cart'>Ir al carrito</Link>
-
+            <Link to='/cart' style={{ color: 'white', textDecoration: 'none' }}>
+                <ShoppingCart style={{ color: 'white' }} />
+            </Link>
         </>
-    )
+    );
 }
 
-export default CartWidget
+export default CartWidget;

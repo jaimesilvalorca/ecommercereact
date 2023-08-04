@@ -1,83 +1,38 @@
-import { useContext, useEffect, useState } from "react"
-import CounterContainer from "../../common/counter/CounterContainer"
-
-import { useParams} from "react-router-dom"
-import ProductCard from "../../common/productCard/ProductCard"
-import { CartContext } from "../../../context/CartContext"
-import { ToastContainer,toast } from "react-toastify"
+import { useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { CartContext } from "../../../context/CartContext";
+import { db } from "../../../firebaseConfig";
+import { getDoc, collection, doc } from "firebase/firestore";
+import ItemDetail from "./ItemDetail";
+import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import {db} from "../../../firebaseConfig"
-import { getDoc,collection,doc} from "firebase/firestore"
 
 const ItemDetailContainer = () => {
+  const { addToCart, getQuantityById } = useContext(CartContext);
+  const [producto, setProducto] = useState({});
+  const { id } = useParams();
+  const totalQuantity = getQuantityById(id);
 
-    const { addToCart,getQuantityById } = useContext(CartContext)
+  useEffect(() => {
+    let productsCollection = collection(db, "products");
+    let productRef = doc(productsCollection, id);
+    getDoc(productRef).then(res => {
+      setProducto({ ...res.data(), id: res.id });
+    });
+  }, [id]);
 
-    const [producto, setProducto] = useState({})
-    
+  const onAdd = (cantidad) => {
+    let productCart = { ...producto, quantity: cantidad };
+    addToCart(productCart);
+    toast.success('Producto agregado correctamente');
+  };
 
-    const { id } = useParams()
+  return (
+    <ItemDetail producto={producto} totalQuantity={totalQuantity} onAdd={onAdd} />
+  );
+};
 
-    const totalQuantity = getQuantityById(id)
-
-    useEffect(() => {
-        let productsCollection = collection(db,"products")
-        let productRef = doc(productsCollection,id)
-        getDoc(productRef).then(res=>{
-            setProducto({...res.data(),id:res.id})
-        })
-    }, [id])
-
-    const onAdd = (cantidad) => {
-
-        let productCart = { ...producto, quantity: cantidad }
-        addToCart(productCart)
-        toast.success('Producto agregado correctamente');
-    }
-
-    return (
-        <div style={{ textAlign: "center" }}>
-            <h1>El producto es: {producto.title}</h1>
-            <div style={{ width: "100%", display: "flex", justifyContent: "space-evenly", flexWrap: "wrap" }}>
-
-                <ProductCard item={producto} />
-                {
-                    (typeof(totalQuantity) === "undefined" || producto.stock > totalQuantity) && producto.stock > 0 && (
-                        <CounterContainer stock={producto.stock} onAdd={onAdd} initial={totalQuantity} />
-                    )}
-
-                    {
-                        producto.stock === 0 && <h2>No hay stock</h2>
-                    }
-                    {
-                        typeof(totalQuantity) !== "undefined" && totalQuantity === producto.stock && <h2>Tienes el maximo de unidades en el carrito</h2>
-                    }
-
-               
-                <ToastContainer
-                    position="top-right"
-                    autoClose={5000}
-                    hideProgressBar={false}
-                    newestOnTop={false}
-                    closeOnClick
-                    rtl={false}
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
-                    theme="light"
-                />
-
-            </div>
-        </div>
-    )
-}
-
-export default ItemDetailContainer
-
-
-
-
-
+export default ItemDetailContainer;
 
 
 

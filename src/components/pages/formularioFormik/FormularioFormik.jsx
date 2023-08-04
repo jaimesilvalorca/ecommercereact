@@ -22,8 +22,8 @@ const FormularioFormik = () => {
             password:Yup.string().required("Este campo es obligatorio").min(6),
             repeatPassword:Yup.string().required().oneOf([Yup.ref("password")],"Las contraseñas debe no coinciden") //el oneOF recibe un arreglo y un string
         }),
-        validateOnChange:false, // para validar el el change
-        validateOnBlur:true, //validar si entro o salgo de un input
+        validateOnChange:false,
+        validateOnBlur:true, 
     })
     console.log(errors)
     return (

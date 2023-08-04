@@ -36,17 +36,12 @@ export const ItemListContainer = () => {
 
   }, [categoryName])
 
-
-
-
   return (
     <div>
       <ItemList items={items} />
 
     </div>
   )
-
-
 }
 
 

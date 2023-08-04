@@ -2,30 +2,23 @@ import { useState } from "react";
 import Counter from "./Counter";
 
 const CounterContainer = ({stock,onAdd,initial=1}) =>{
-    const [contador,setContador] = useState(initial)
+    const [count,setCount] = useState(initial)
 
     const sumar =  () =>{
-        // if(contador < stock){
-        //     setContador(contador +1)
-        // }else{
-        //     alert("cantidad maxima")
-        // }
-        contador < stock ? setContador(contador+1): alert("cantidad maxima")
-        
+         if(count < stock){
+             setCount(count+1)
+         }else{
+             alert("cantidad maxima")
+         }       
     }
 
     const restar = () =>{
-        // if(contador < 1){
-        //     setContador(contador -1)
-        // }
-
-        contador > 1 && setContador(contador -1)
-
+        count > 1 && setCount(count -1)
     }
 
 
     return (
-        <Counter contador={contador} sumar={sumar} restar={restar} onAdd={onAdd} />
+        <Counter count={count} sumar={sumar} restar={restar} onAdd={onAdd} />
     )
 }
 

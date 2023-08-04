@@ -15,7 +15,7 @@ const Dashboard = () => {
     }
   return (
     <div>
-        <button onClick={rellenar}>Rellanar base de datos</button>
+        <button onClick={rellenar}>Rellenar base de datos</button>
 
     </div>
   )
